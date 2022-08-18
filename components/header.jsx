@@ -2,7 +2,6 @@ import styled from "styled-components";
 
 
 const HeaderBlock = styled.header`
-  height: 80px;
   background: linear-gradient(270deg, #666666 0%, #669966 50%, #999999 100%);
   border-bottom: 2px solid transparent;
   border-image-source: linear-gradient(270deg, gold 0%, #8D929F 50%, gold 100%);
@@ -17,9 +16,6 @@ const HeaderNav = styled.h1`
   font-weight: 500;
   color: #cccccc;
   text-shadow: 0 0 2px #ffdc98;
-  /* background: linear-gradient(30deg, rgba(72, 83, 40, 1) 30.05%, rgba(206, 221, 165, 1) 91.64%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent; */
 `
 
 const Header = () => {
