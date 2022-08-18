@@ -7,7 +7,7 @@ const Wraper = styled.div`
   min-height: 100vh;
   max-height: 100vh ;
   display: grid;
-  grid-template: 85px 1fr minmax(35px, auto) / 1fr;
+  grid-template: 80px 1fr minmax(35px, auto) / 1fr;
   overflow: hidden;
 
 `

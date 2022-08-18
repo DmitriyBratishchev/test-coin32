@@ -5,9 +5,6 @@ const nextConfig = {
   images: {
     loader: 'imgix',
     path: 'https://media.rawg.io/media/'
-    // domains: [
-    //   'media.rawg.io'
-    // ]
   }
 }
 

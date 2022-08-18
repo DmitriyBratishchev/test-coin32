@@ -8,18 +8,6 @@ export const ListContainer = styled.ul`
   align-items: center;
   height: inherit;
   padding: 0 5%;
-  /* overflow-y: scroll; */
-  /* &::-webkit-scrollbar{
-    margin-right: 0;
-    width: 10px;
-    background-color: #0C0E17;
-    border-radius: 5px;
-  }
-  &::-webkit-scrollbar-thumb{
-    border-radius: 10px;
-    background: linear-gradient(180deg, #8D929F 0%, #555A66 100%);
-    border-color: red;
-  } */
   @media (min-width: 768px) {
     padding: 0 10px;
     display: grid;
@@ -56,9 +44,4 @@ export const ListContainer = styled.ul`
     display: block;
     width: 100%;
   }
-`
-export const HeaderGame = styled.h3`
-  position: absolute;
-  top: 10px;
-  left: 10px;
 `
