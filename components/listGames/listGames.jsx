@@ -75,8 +75,8 @@ const ListGames = ({
             key={ game.id }
             game={ game }
           />
-        )
-        ) }
+        ))
+        }
         { listLoading && <Title>Loading ...</Title> }
       </ListContainer>
     </div>

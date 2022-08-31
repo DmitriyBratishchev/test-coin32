@@ -79,7 +79,7 @@ const PageGame = ({ game }) => {
       <p className="description">
         { description.map((text, i) => <span key={ 'text' + i }> { text }</span>) }
       </p>
-      <a className="website" href={ game.website } target={ '_blank' } rel="noreferrer">Перейти на официальный сыйт</a>
+      <a className="website" href={ game.website } target={ '_blank' } rel="noreferrer">Перейти на официальный сайт</a>
     </PageGameBlock>
   );
 }

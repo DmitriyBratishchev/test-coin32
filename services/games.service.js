@@ -1,16 +1,16 @@
-import httpGames from "./httpGames.service";
+import httpGames from './httpGames.service';
 
-const gamesEndpoint = '/games'
+const gamesEndpoint = '/games';
 
 const gamesService = {
   getGames: async (params) => {
-    const data = await httpGames.get(gamesEndpoint, { params })
-    return data
+    const data = await httpGames.get(gamesEndpoint, { params });
+    return data;
   },
   getGameBuySlug: async (slug) => {
-    const data = await httpGames.get(gamesEndpoint + `/${slug}`)
-    return data
+    const data = await httpGames.get(`${gamesEndpoint}/${slug}`);
+    return data;
   }
-}
+};
 
 export default gamesService;
