@@ -1,3 +1,4 @@
+import React from 'react';
 import styled from "styled-components";
 import ChekboxField from "../checkboxField";
 
@@ -26,9 +27,8 @@ const FilterPlatform = ({ parentPlatfopms, filteredIds, queryParam, handleCangeP
               name={ platform.id }
               value={ filteredIds.includes(platform.id) }
               onChange={ handleChange }
-            >
-              { platform.name }
-            </ChekboxField>
+              text={ platform.name }
+            />
           </li>
         )
       }) }

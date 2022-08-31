@@ -1,4 +1,4 @@
-import styled from 'styled-components'
+import styled from 'styled-components';
 
 export const ListContainer = styled.ul`
   display: grid;
@@ -43,5 +43,5 @@ export const ListContainer = styled.ul`
     content: '';
     display: block;
     width: 100%;
-  }
-`
+  };
+`;
