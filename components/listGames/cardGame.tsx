@@ -1,6 +1,8 @@
-import Link from "next/link";
-import styled from "styled-components";
-import { getImageLinkMinified } from "../../utils/getImageLinkMinified";
+import { FC } from 'react';
+import Link from 'next/link';
+import styled from 'styled-components';
+import { GameType } from '../../types';
+import { getImageLinkMinified } from '../../utils/getImageLinkMinified';
 
 const CardGameBlock = styled.li`
   display: flex;
@@ -23,7 +25,7 @@ const CardGameBlock = styled.li`
     bottom: 0;
     left: 0;
   }
-`
+`;
 const CardInfo = styled.div`
   background-color: rgba(0,0,0,.6);
   position: absolute;
@@ -51,9 +53,13 @@ const CardInfo = styled.div`
     color: #bd90fb;
     margin-left: 10px;
   }
-`
+`;
 
-const CardGame = ({ game }) => {
+type CardGameProps = {
+  game: GameType
+}
+
+const CardGame: FC<CardGameProps> = ({ game }) => {
   return (
     <CardGameBlock>
       <Link href={ `game/${game.slug}` }>
@@ -72,6 +78,6 @@ const CardGame = ({ game }) => {
       </Link>
     </CardGameBlock>
   );
-}
+};
 
 export default CardGame;

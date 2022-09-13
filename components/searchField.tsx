@@ -1,4 +1,6 @@
-import styled from "styled-components";
+import { ChangeEvent, FC } from 'react';
+import styled from 'styled-components';
+import { ChangeParamsType } from '../types';
 
 const Search = styled.div`
   display: flex;
@@ -28,13 +30,18 @@ const Search = styled.div`
       outline: none;
     }
   }
-`
+`;
 
-const SearchField = ({ searchValue, handleChangeParams }) => {
+type SearchFieldProps = {
+  searchValue: string,
+  handleChangeParams: ChangeParamsType
+};
 
-  const handleChange = ({ target }) => {
-    handleChangeParams('search', target.value)
-  }
+const SearchField: FC<SearchFieldProps> = ({ searchValue, handleChangeParams }) => {
+
+  const handleChange = ({ target }: ChangeEvent<HTMLInputElement> ) => {
+    handleChangeParams('search', target.value);
+  };
 
   return (
     <Search>
@@ -51,6 +58,6 @@ const SearchField = ({ searchValue, handleChangeParams }) => {
       />
     </Search>
   );
-}
+};
 
 export default SearchField;

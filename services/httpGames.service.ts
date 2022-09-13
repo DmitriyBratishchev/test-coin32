@@ -14,7 +14,7 @@ http.interceptors.request.use((req) => {
 }, (error) => error);
 
 http.interceptors.response.use((res) => {
-  return res
+  return res;
 }, (error) => {
   console.error('error res', error);
 });
