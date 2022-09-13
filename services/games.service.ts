@@ -1,7 +1,5 @@
-import { GamesParamsType } from '../types';
 import httpGames from './httpGames.service';
 
-// type Params = Partial<Omit<GamesParamsType, 'parent_platforms'> & {'parent_platforms': string}>
 type Params = {
   [key: string]: string | number
 }

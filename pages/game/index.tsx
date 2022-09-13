@@ -1,3 +1,4 @@
+import { FC } from 'react';
 import styled from 'styled-components';
 
 const Container = styled.div`
@@ -7,7 +8,7 @@ const Container = styled.div`
   justify-content: start;
 `;
 
-const GameList = () => {
+const GameList: FC = () => {
   return (
     <Container>
       <h1>GameList</h1>

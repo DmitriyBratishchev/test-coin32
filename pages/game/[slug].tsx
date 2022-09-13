@@ -1,10 +1,23 @@
-import Head from "next/head";
-import styled from "styled-components";
-import PageGame from "../../components/pageGame/pageGame";
-import gamesService from "../../services/games.service";
+import { GetServerSideProps } from 'next';
+import Head from 'next/head';
+import { FC } from 'react';
+import styled from 'styled-components';
+import PageGame from '../../components/pageGame/pageGame';
+import gamesService from '../../services/games.service';
+import { GameType } from '../../types';
 
-export const getServerSideProps = async (context) => {
-  const { slug } = context.params;
+export const getServerSideProps: GetServerSideProps = async (context) => {
+  const slug = context?.params?.slug;
+  if(!slug) {
+    return {
+      notFound: true
+    };
+  }
+  if (typeof slug !== 'string') {
+    return {
+      notFound: true
+    };
+  }
   try {
     const { data } = await gamesService.getGameBuySlug(slug);
     if ('slug' in data && data?.redirect) {
@@ -24,7 +37,11 @@ export const getServerSideProps = async (context) => {
   }
 };
 
-const Main = styled.main`
+type MainProps = {
+  bgUrl: string
+}
+
+const Main = styled.main<MainProps>`
   position: relative;
   display: grid;
   grid-template: 1fr / minmax(15px, auto) minmax(auto, 1440px) minmax(15px,auto);
@@ -53,7 +70,11 @@ const Main = styled.main`
   }
 `;
 
-const Game = ({ game }) => {
+type GameProps = {
+  game: GameType
+}
+
+const Game: FC<GameProps> = ({ game }) => {
   return (
     <>
       <Head>
