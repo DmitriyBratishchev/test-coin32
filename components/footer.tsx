@@ -1,7 +1,7 @@
-import styled from "styled-components";
+import { FC } from 'react';
+import styled from 'styled-components';
 
 const FooterBlock = styled.footer`
-
   display: flex;
   justify-content: space-around;
   align-items: flex-start;
@@ -19,9 +19,9 @@ const FooterBlock = styled.footer`
     margin-top: 50px;
     margin-bottom: 20px;
   }
-`
+`;
 
-const Footer = () => {
+const Footer: FC = () => {
   return (
     <FooterBlock>
       <div>Информация</div>
@@ -31,6 +31,6 @@ const Footer = () => {
       </div>
     </FooterBlock>
   );
-}
+};
 
 export default Footer;
