@@ -1,6 +1,8 @@
-import Link from "next/link";
-import styled from "styled-components";
-import { Sticky } from "../../styles/components/sticky";
+import { FC } from 'react';
+import Link from 'next/link';
+import styled from 'styled-components';
+import { Sticky } from '../../styles/components/sticky';
+import { GameType } from '../../types';
 
 const PageGameBlock = styled.section`
   z-index: 1000;
@@ -63,10 +65,14 @@ const PageGameBlock = styled.section`
       font-size: 1.51rem;
     }
   }
-`
+`;
 
-const PageGame = ({ game }) => {
-  const description = game.description_raw.split('\n')
+type PageGameProps = {
+  game: GameType
+}
+
+const PageGame: FC<PageGameProps> = ({ game }) => {
+  const description = game.description_raw.split('\n');
   return (
     <PageGameBlock className="container">
       <Sticky>
@@ -82,6 +88,6 @@ const PageGame = ({ game }) => {
       <a className="website" href={ game.website } target={ '_blank' } rel="noreferrer">Перейти на официальный сайт</a>
     </PageGameBlock>
   );
-}
+};
 
 export default PageGame;

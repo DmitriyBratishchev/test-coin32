@@ -1,7 +1,13 @@
-import React, { useState, useRef, useEffect } from 'react';
+import React, { FC, ChangeEvent } from 'react';
 import styled from 'styled-components';
+import { sortParamLabels } from '../../constants/sortParamLabels';
+import { ChangeParamsType, sortParamLabelType } from '../../types';
 
-const SortPanelBlock = styled.div`
+type sortPanelBlockProps = {
+  flexStart: boolean
+}
+
+const SortPanelBlock = styled.form<sortPanelBlockProps>`
   background-color: #666666;
   display: flex;
   align-items: center;
@@ -14,7 +20,11 @@ const SortPanelBlock = styled.div`
   }
 `;
 
-const LabelButton = styled.div`
+type LabelButtonProps = {
+  checked?: boolean
+}
+
+const LabelButton = styled.div<LabelButtonProps>`
   display: flex;
   align-items: center;
   height: 2rem;
@@ -32,46 +42,40 @@ const ButtonOrder = styled(LabelButton)`
   margin-left: auto;
 `;
 
-const sortParamsLables = {
-  released: 'дате релиза',
-  rating: 'рейтингу'
+type SortPanelProps = {
+  sortParams: sortParamLabelType[],
+  sortValue: sortParamLabelType | '',
+  sortOrder: '' | '-',
+  handleChangeParams: ChangeParamsType
 };
-function SortPanel({ sortParams, sortValue, handleChangeParams }) {
-  const prevOrder = useRef('');
-  const [order, setOrder] = useState('-');
 
-  useEffect(() => {
-    if (order !== prevOrder) {
-      prevOrder.current = prevOrder.current === '-' ? '' : '-';
-      handleChangeParams('ordering', sortValue.includes('-') ? sortValue.substring(1) : order + sortValue);
-    }
-  }, [order]);
+const SortPanel: FC<SortPanelProps> = ({ sortParams, sortValue, sortOrder, handleChangeParams }) => {
 
-  const handleSetOrder = () => {
-    setOrder((prev) => (prev === '-' ? '' : '-'));
+  const handleChangeOrder = () => {
+    handleChangeParams('order', sortOrder === '-' ? '' : '-');
   };
-  const handleChange = ({ target }) => {
-    const value = sortValue === (order + target.value) ? '' : order + target.value;
+
+  const handleChange = ({ target }: ChangeEvent<HTMLInputElement>) => {
+    const value = sortValue === target.value ? '' : target.value as sortParamLabelType;
     handleChangeParams('ordering', value);
   };
 
-  const getLabel = (param) => (param.includes('-')
-    ? sortParamsLables[param.substring(1)]
-    : sortParamsLables[param]);
   return (
     <SortPanelBlock
-      flexStart={ !sortValue }
+      flexStart={ sortValue === '' || sortOrder === '-' }
     >
       <div>Сортировать по: </div>
       { sortParams && sortParams.map((ordering) => (
         <React.Fragment key={ `sort_${ordering}` }>
           <input
-            type="radio"
+          // onClickCapture={}
+            type="checkbox"
             id={ `sort_${ordering}` }
-            checked={ sortValue.includes(ordering) }
+            // name="ordering"
+            checked={ sortValue.includes(`${ordering}`) }
             value={ ordering }
-            onChange={ () => {} }
-            onClick={ handleChange }
+            onChange={ handleChange }
+            // onClick={ handleChange }
           />
           <label
             htmlFor={ `sort_${ordering}` }
@@ -79,21 +83,21 @@ function SortPanel({ sortParams, sortValue, handleChangeParams }) {
             <LabelButton
               checked={ sortValue.includes(ordering) }
             >
-              { ordering && getLabel(ordering) }
+              { ordering && sortParamLabels[ordering] }
             </LabelButton>
           </label>
         </React.Fragment>
       )) }
-      { sortValue && (
+      { sortValue !== '' && (
         <ButtonOrder
-          type="button"
-          onClick={ handleSetOrder }
+          // type="button"
+          onClick={ handleChangeOrder }
         >
-          { order === '-' ? 'по убыванию' : 'по возрастанию' }
+          { sortOrder === '-' ? 'по убыванию' : 'по возрастанию' }
         </ButtonOrder>
       ) }
     </SortPanelBlock>
   );
-}
+};
 
 export default SortPanel;

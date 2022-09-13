@@ -4,25 +4,25 @@ import PageGame from "../../components/pageGame/pageGame";
 import gamesService from "../../services/games.service";
 
 export const getServerSideProps = async (context) => {
-  const { slug } = context.params
+  const { slug } = context.params;
   try {
-    const { data } = await gamesService.getGameBuySlug(slug)
+    const { data } = await gamesService.getGameBuySlug(slug);
     if ('slug' in data && data?.redirect) {
-      const { data: redirectData } = await gamesService.getGameBuySlug(data.slug)
+      const { data: redirectData } = await gamesService.getGameBuySlug(data.slug);
       return {
-        props: {game: redirectData}
-      }
+        props: { game: redirectData }
+      };
     }
     return {
-      props: {game: data}
-    }
+      props: { game: data }
+    };
 
   } catch (error) {
     return {
       notFound: true
-    }
+    };
   }
-}
+};
 
 const Main = styled.main`
   position: relative;
@@ -51,7 +51,7 @@ const Main = styled.main`
     grid-column: 2/3;
     grid-row: 1;
   }
-`
+`;
 
 const Game = ({ game }) => {
   return (
@@ -69,6 +69,6 @@ const Game = ({ game }) => {
       </Main>
     </>
    );
-}
+};
 
 export default Game;

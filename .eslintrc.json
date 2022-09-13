@@ -1,4 +1,5 @@
 {
+  "root": true,
   "env": {
     "browser": true,
     "node": true,
@@ -6,12 +7,13 @@
   },
   "extends": [
     "eslint:recommended",
+    "plugin:@typescript-eslint/eslint-recommended",
+    "plugin:@typescript-eslint/recommended",
     "plugin:react/recommended",
-    // "plugin:@typescript-eslint/recommended",
     "next/core-web-vitals"
   ],
   "overrides": [],
-  // "parser": "@typescript-eslint/parser",
+  "parser": "@typescript-eslint/parser",
   "parserOptions": {
     "ecmaVersion": "latest",
     "sourceType": "module",
@@ -20,11 +22,28 @@
     }
   },
   "plugins": [
-    "react"
-    // "@typescript-eslint"
+    "react",
+    "@typescript-eslint"
   ],
   "rules": {
     "linebreak-style": "off",
+    "semi": "error",
+    "quotes": [
+      2,
+      "single"
+    ],
+    "jsx-quotes": [
+      2,
+      "prefer-double"
+    ],
+    "object-curly-spacing": [
+      "error",
+      "always"
+    ],
+    "array-bracket-spacing": [
+      "error",
+      "always"
+    ],
     "operator-linebreak": [
       "error",
       "after",
@@ -38,20 +57,18 @@
     "import/prefer-default-export": 0,
     "react/jsx-props-no-spreading": 0,
     "react/jsx-curly-spacing": 0,
+    "react-hooks/exhaustive-deps": 0,
     "comma-dangle": [
       2,
       "never"
-    ], // Последняя запятая пар ключ-значение массива и объекта
+    ],
     "comma-spacing": [
       1,
-      { // Пробелы перед запятой запрещены, а пробелы обязательны после запятой
+      {
         "before": false,
         "after": true
       }
-    ]
-    // "jsx-closing-bracket-location": [
-    //   1,
-    //   "tag-aligned"
-    // ]
+    ],
+    "@typescript-eslint/ban-ts-comment": 1
   }
 }
